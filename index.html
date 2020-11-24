@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="addproduct"><input type="button" value="Add" onclick="addProduct()">
+<table id="products" border="1px"></table>
+<script>
+    let myProducts = ['Qua tao', 'Qua oi', 'Qua chuoi'];
+    function showProducts(){
+        let str = "<tr>"
+            +"<th>STT</th>"
+            +"<th>Product Name</th>"
+            +"<th colspan='2'>Action</th>"
+            + "</tr>";
+        for (let i = 0; i < myProducts.length; i++) {
+            str += '<tr>' +
+                        '<td>' + (i+1) +'</td>' +
+                        '<td>' + myProducts[i] +'</td>' +
+                        '<td><button onclick="editProduct('+i+')">Edit</button></td>' +
+                        '<td><button onclick="delProduct('+i+')">Delete</button></td>' +
+                    '</tr>';
+        }
+        document.getElementById('products').innerHTML = str;
+    }
+    function addProduct(){
+        myProducts.push(document.getElementById('addproduct').value);
+        showProducts();
+        clear();
+    }
+    function clear(){
+        document.getElementById('addproduct').value = ""
+    }
+    function delProduct(index){
+        myProducts.splice(index, 1);
+        showProducts();
+    }
+    function editProduct(index) {
+        let newName = prompt("Nhap ten moi cua san pham");
+        myProducts[index] = newName;
+        showProducts();
+    }
+    function main(){
+        showProducts();
+    }
+    main();
+
+</script>
+</body>
+</html>
